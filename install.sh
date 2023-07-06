@@ -30,7 +30,7 @@ multipass set client.primary-name=docker
 cat ~/.ssh/id_ed25519.pub | multipass exec docker -- bash -c 'cat -- >> .ssh/authorized_keys'
 
 # Add SSH configuration for the local Docker VM.
-VM_IP=$(multipass ls --format json | jq -r  '.list[].ipv4[0]')
+VM_IP=$(multipass ls --format csv | grep docker | cut -d ',' -f 3)
 cat <<EOF >>~/.ssh/config
 Host docker.local
   HostName $VM_IP
