@@ -18,7 +18,7 @@ This script will install Multipass from scratch on MacOS.
 
 Enter your password when prompted.
 
-Now just clone a repository locally container a devcontainer configuration and
+Now just clone a repository locally containing a devcontainer configuration and
 select `Clone in volume` (NOTE: NOT `Reopen in Container`) to open it in the
 Docker VM.
 
