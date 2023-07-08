@@ -1,10 +1,12 @@
 #! /bin/bash
 set -euxo pipefail
 
-mkdir -p $HOME/.local/bin $HOME/.docker/cli-plugins
+mkdir -p "$HOME"/.local/bin "$HOME"/.docker/cli-plugins
 
-echo 'export PATH=$PATH:$HOME/.local/bin' >> $HOME/.profile
-source $HOME/.profile
+# shellcheck disable=SC2016
+echo 'export PATH=$PATH:$HOME/.local/bin' >>"$HOME"/.zshrc
+# shellcheck source=/dev/null
+source "$HOME"/.zshrc
 
 # Install Multipass.
 curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.12.0/multipass-1.12.0+mac-Darwin.pkg
@@ -14,17 +16,17 @@ rm multipass.pkg
 # Install the Docker CLI and helpers.
 CPU=$(uname -m)
 case $CPU in
-  arm64) CPU=aarch64 ;;
+arm64) CPU=aarch64 ;;
 esac
-curl -o docker.tgz -SL https://download.docker.com/mac/static/stable/$CPU/docker-20.10.10.tgz
+curl -o docker.tgz -SL https://download.docker.com/mac/static/stable/"$CPU"/docker-20.10.10.tgz
 tar xzvf docker.tgz
 install docker/docker ~/.local/bin/
 install docker/cli-plugins/docker-buildx ~/.local/bin/
 install docker/cli-plugins/docker-app ~/.local/bin/
 (
   cd ~/.docker/cli-plugins
-  ln -s ~/.local/bin/docker-buildx
-  ln -s ~/.local/bin/docker-app
+  ln -s ~/.local/bin/docker-buildx .
+  ln -s ~/.local/bin/docker-app .
 )
 rm -rf docker.tgz docker/
 
@@ -34,10 +36,10 @@ multipass launch docker
 multipass set client.primary-name=docker
 
 # Copy the local user's SSH key to the VM.
-mkdir $HOME/.ssh
-ssh-keygen -t ed25519 -C $USER
-mv id_ed25519* $HOME/.ssh/
-cat ~/.ssh/id_ed25519.pub | multipass exec docker -- bash -c 'cat -- >> .ssh/authorized_keys'
+mkdir "$HOME"/.ssh
+ssh-keygen -t ed25519 -C "$USER"
+mv id_ed25519* "$HOME"/.ssh/
+multipass <~/.ssh/id_ed25519.pub exec docker -- bash -c 'cat -- >> .ssh/authorized_keys'
 
 # Add SSH configuration for the local Docker VM.
 VM_IP=$(multipass ls --format csv | grep docker | cut -d ',' -f 3)
