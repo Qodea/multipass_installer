@@ -28,10 +28,12 @@ install docker/cli-plugins/docker-app ~/.local/bin/
 rm -rf docker.tgz docker/
 
 # Start the prepackaged Docker VM and set it as the default machine.
+multipass set local.driver=qemu
 multipass launch docker
 multipass set client.primary-name=docker
 
 # Copy the local user's SSH key to the VM.
+ssh-keygen -t ed25519 -C $USER
 cat ~/.ssh/id_ed25519.pub | multipass exec docker -- bash -c 'cat -- >> .ssh/authorized_keys'
 
 # Add SSH configuration for the local Docker VM.
