@@ -7,7 +7,7 @@ echo 'export PATH=$PATH:$HOME/.local/bin' >> $HOME/.profile
 source $HOME/.profile
 
 # Install Multipass.
-curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.12.1/multipass-1.12.1+mac-Darwin.pkg
+curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.11.1/multipass-1.12.1+mac-Darwin.pkg
 sudo installer -pkg multipass.pkg -target /
 rm multipass.pkg
 
@@ -27,9 +27,6 @@ install docker/cli-plugins/docker-app ~/.local/bin/
   ln -s ~/.local/bin/docker-app
 )
 rm -rf docker.tgz docker/
-
-echo 'Waiting for Multipass to be ready...'
-sleep 10
 
 # Start the prepackaged Docker VM and set it as the default machine.
 multipass set local.driver=qemu
