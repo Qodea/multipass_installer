@@ -19,10 +19,12 @@ Docker VM.
 ## TODO
 
 - Check for the existence of various things which it is assumed do not exist.
-- increase robustness of Multipass calls, which seem to occasionally fail.
+- Increase robustness of Multipass calls, which seem to occasionally fail.
 - Make key generation non-interactive.
 - Try to figure out a test suite.
 - Assumes zsh.
+- Make opening in a container work directly instead of having to use a volume.
+  This will require figuring out how to mount things.
 
 ## License
 
