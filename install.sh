@@ -1,6 +1,10 @@
 #! /bin/bash
 set -euxo pipefail
 
+mkdir -p $HOME/.local/bin $HOME/.docker/cli-plugins
+
+echo 'export PATH=$PATH:/.local/bin' >> $HOME/.profile
+
 # Install Multipass.
 curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.12.1/multipass-1.12.1+mac-Darwin.pkg
 sudo installer -pkg multipass.pkg -target /
