@@ -28,6 +28,9 @@ install docker/cli-plugins/docker-app ~/.local/bin/
 )
 rm -rf docker.tgz docker/
 
+echo 'Waiting for Multipass to be ready...'
+sleep 10
+
 # Start the prepackaged Docker VM and set it as the default machine.
 multipass set local.driver=qemu
 multipass launch docker
