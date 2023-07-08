@@ -29,7 +29,7 @@ install docker/cli-plugins/docker-app ~/.local/bin/
 rm -rf docker.tgz docker/
 
 # Start the prepackaged Docker VM and set it as the default machine.
-multipass set local.driver=qemu
+# multipass set local.driver=qemu
 multipass launch docker
 multipass set client.primary-name=docker
 
