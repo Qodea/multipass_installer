@@ -1,5 +1,5 @@
 #! /bin/bash
-set -e, -u, -x, -o pipefail
+set -euxo pipefail
 
 # Install Multipass.
 curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.12.1/multipass-1.12.1+mac-Darwin.pkg
