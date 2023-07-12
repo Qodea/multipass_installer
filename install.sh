@@ -33,6 +33,9 @@ rm -rf docker.tgz docker/
 # Start the prepackaged Docker VM and set it as the default machine.
 # multipass set local.driver=qemu
 multipass launch docker
+multipass stop docker
+multipass mount --type native "$HOME" docker
+multipass start docker
 multipass set client.primary-name=docker
 
 # Copy the local user's SSH key to the VM.
