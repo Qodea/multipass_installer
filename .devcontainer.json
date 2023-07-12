@@ -10,6 +10,6 @@
         "timonwong.shellcheck"
       ]
     }
-  },
+  }
   // "postStartCommand": "pre-commit install"
 }
