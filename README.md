@@ -22,6 +22,8 @@ Now just clone a repository containing a devcontainer configuration and select
 - Make key generation non-interactive.
 - Try to figure out a test suite.
 - Assumes zsh.
+- Check if the avahi stuff from [this repo](https://github.com/magnetikonline/macos-multipass-docker)
+  helps with hostname persistence.
 
 ## License
 
