@@ -17,13 +17,14 @@ Now just clone a repository containing a devcontainer configuration and select
 
 ## TODO
 
-- Check for the existence of various things which it is assumed do not exist.
-- Increase robustness of Multipass calls, which seem to occasionally fail.
-- Make key generation non-interactive.
-- Try to figure out a test suite.
-- Assumes zsh.
-- Check if the avahi stuff from [this repo](https://github.com/magnetikonline/macos-multipass-docker)
-  helps with hostname persistence.
+-   Check for the existence of various things which it is assumed do not exist.
+-   Increase robustness of Multipass calls, which seem to occasionally fail.
+-   Make key generation non-interactive.
+-   Try to figure out a test suite.
+-   Assumes zsh.
+-   Check if the avahi stuff from [this
+    repo](https://github.com/magnetikonline/macos-multipass-docker) helps with
+    hostname persistence.
 
 ## License
 
