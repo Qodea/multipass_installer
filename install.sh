@@ -1,6 +1,12 @@
 #! /bin/bash
 set -euxo pipefail
 
+if [ "$(uname)" != "Darwin" ]; then
+  echo 'This script is for MacOS only!'
+  echo "If you're on Linux you can install Docker CE directly."
+  exit 1
+fi
+
 mkdir -p "$HOME"/.local/bin "$HOME"/.docker/cli-plugins
 
 export PATH=$PATH:$HOME/.local/bin
