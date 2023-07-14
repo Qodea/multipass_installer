@@ -47,7 +47,7 @@ multipass set client.primary-name=docker
 mkdir "$HOME"/.ssh
 ssh-keygen -t ed25519 -C "$USER" -f id_ed25519 -N ""
 mv id_ed25519* "$HOME"/.ssh/
-multipass <~/.ssh/id_ed25519.pub exec docker -- bash -c 'cat -- >> .ssh/authorized_keys'
+multipass <~/.ssh/id_ed25519.pub exec docker -- bash -c 'cat -- >> ~/.ssh/authorized_keys'
 
 # Add SSH configuration for the local Docker VM.
 cat <<EOF >>~/.ssh/config
