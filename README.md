@@ -4,6 +4,16 @@ This script will install Multipass from scratch on MacOS.
 
 Visual Studio Code is not needed for the install, but needed to make use of it.
 
+## Prerequisites
+
+The script should need absolutely nothing to run from a fresh install. However
+you will need git to download it in the first place, so open a terminal and
+enter:
+
+```sh
+xcode-select --install
+```
+
 ## Usage
 
 ```sh
