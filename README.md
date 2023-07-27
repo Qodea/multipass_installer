@@ -20,7 +20,7 @@ Now just clone a repository containing a devcontainer configuration and select
 When initially running the installer script, make sure you cloned to somewhere
 other than a protected MacOS directory (such as `Desktop`). The recommended
 option is to create `$HOME/Developer` (which MacOS automatically assigns a nice
-icon) and clone to there. Otherewise you may get mounting issues where Docker
+icon) and clone to there. Otherwise you may get mounting issues where Docker
 complains that the current directory doesn't exist.
 
 If the Docker VM ever gets into a state where it won't launch, then delete it
