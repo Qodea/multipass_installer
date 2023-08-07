@@ -1,6 +1,6 @@
 # Multipass installer
 
-This script will install Multipass from scratch on MacOS.
+This script will install Docker via Multipass from scratch on MacOS.
 
 Visual Studio Code is not needed for the install, but needed to make use of it.
 
@@ -50,8 +50,6 @@ ssh-keygen -R docker.local
 
 ## TODO
 
--   Check for the existence of various things which it is assumed do not exist.
--   Increase robustness of Multipass calls, which seem to occasionally fail.
 -   Add a test suite.
 
 ## License
