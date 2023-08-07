@@ -8,9 +8,7 @@ if [ "$(uname)" != "Darwin" ]; then
 fi
 
 # Create directories.
-[ ! -d "$HOME/.local/bin" ] && mkdir -p "$HOME/.local/bin"
-[ ! -d "$HOME/.docker/cli-plugins" ] && mkdir -p "$HOME/.docker/cli-plugins"
-[ ! -d "$HOME/.ssh" ] && mkdir -p "$HOME/.ssh"
+mkdir -p "$HOME/.local/bin" "$HOME/.docker/cli-plugins" "$HOME/.ssh"
 
 export PATH=$PATH:$HOME/.local/bin
 # shellcheck disable=SC2016
