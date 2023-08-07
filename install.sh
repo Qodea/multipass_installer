@@ -44,7 +44,7 @@ multipass start docker
 multipass set client.primary-name=docker
 
 # Copy the local user's SSH key to the VM.
-mkdir "$HOME"/.ssh
+mkdir -p "$HOME"/.ssh
 ssh-keygen -t ed25519 -C "$USER" -f id_ed25519 -N ""
 mv id_ed25519* "$HOME"/.ssh/
 multipass <~/.ssh/id_ed25519.pub exec docker -- bash -c 'cat -- >> ~/.ssh/authorized_keys'
