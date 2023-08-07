@@ -33,6 +33,15 @@ option is to create `$HOME/Developer` (which MacOS automatically assigns a nice
 icon) and clone to there. Otherwise you may get mounting issues where Docker
 complains that the current directory doesn't exist.
 
+Likewise, if you're cloning to a protected directory (e.g. under `Documents`)
+then you may find that your containers fail to mount the directory. Either move
+your files to a non-protected path or enable full disk access for `multipassd`
+in your MacOS System Settings under Privacy & Security -> Full Disk Access.
+
+If you get errors about `docker-credential-osxkeychain` not existing, either
+install the binary or remove the `credsStore` line from `~/.docker/config.json`
+(which was probably put there by Rancher Desktop).
+
 If the Docker VM ever gets into a state where it won't launch, then delete it
 and launch it again. This means you'll need to re-add keys (and remove the old
 ones from your keystore) and re-mount your home directory:
