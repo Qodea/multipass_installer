@@ -7,7 +7,10 @@ if [ "$(uname)" != "Darwin" ]; then
   exit 1
 fi
 
-mkdir -p "$HOME"/.local/bin "$HOME"/.docker/cli-plugins
+# Create directories.
+[ -d "$HOME/.local/bin" ] && mkdir -p "$HOME/.local/bin"
+[ -d "$HOME/.docker/cli-plugins" ] && mkdir -p "$HOME/.docker/cli-plugins"
+[ -d "$HOME/.ssh" ] && mkdir -p "$HOME/.ssh"
 
 export PATH=$PATH:$HOME/.local/bin
 # shellcheck disable=SC2016
@@ -25,13 +28,13 @@ arm64) CPU=aarch64 ;;
 esac
 curl -o docker.tgz -SL https://download.docker.com/mac/static/stable/"$CPU"/docker-20.10.10.tgz
 tar xzvf docker.tgz
-install docker/docker ~/.local/bin/
-install docker/cli-plugins/docker-buildx ~/.local/bin/
-install docker/cli-plugins/docker-app ~/.local/bin/
+install docker/docker "$HOME/.local/bin/"
+install docker/cli-plugins/docker-buildx "$HOME/.local/bin/"
+install docker/cli-plugins/docker-app "$HOME/.local/bin/"
 (
-  cd ~/.docker/cli-plugins
-  ln -s ~/.local/bin/docker-buildx .
-  ln -s ~/.local/bin/docker-app .
+  cd "$HOME/.docker/cli-plugins"
+  ln -s "$HOME/.local/bin/docker-buildx" .
+  ln -s "$HOME/.local/bin/docker-app" .
 )
 rm -rf docker.tgz docker/
 
@@ -43,14 +46,15 @@ multipass mount --type native "$HOME" docker
 multipass start docker
 multipass set client.primary-name=docker
 
-# Copy the local user's SSH key to the VM.
-mkdir -p "$HOME"/.ssh
-ssh-keygen -t ed25519 -C "$USER" -f id_ed25519 -N ""
-mv id_ed25519* "$HOME"/.ssh/
-multipass <~/.ssh/id_ed25519.pub exec docker -- bash -c 'cat -- >> ~/.ssh/authorized_keys'
+# Copy the local user's key to the VM (creating it first if it doesn't exist)
+if [ ! -f "$HOME/.ssh/id_ed25519.pub" ]; then
+  ssh-keygen -t ed25519 -C "$USER" -f id_ed25519 -N ""
+  mv id_ed25519* "$HOME/.ssh/"
+fi
+multipass <"$HOME/.ssh/id_ed25519.pub" exec docker -- bash -c 'cat -- >> ~/.ssh/authorized_keys'
 
 # Add SSH configuration for the local Docker VM.
-cat <<EOF >>~/.ssh/config
+cat <<EOF >>"$HOME/.ssh/config"
 Host docker.local
   User ubuntu
   ProxyCommand bash -c "nc $(multipass ls --format csv | grep docker | cut -d ',' -f 3) %p"
