@@ -21,20 +21,20 @@ rm multipass.pkg
 
 # Install the Docker CLI and helpers.
 CPU=$(uname -m)
+CPU_BUILDX=amd64
 case $CPU in
-arm64) CPU=aarch64 ;;
+arm64) CPU=aarch64; CPU_BUILDX=arm64 ;;
 esac
-curl -o docker.tgz -SL https://download.docker.com/mac/static/stable/"$CPU"/docker-20.10.10.tgz
+curl -o docker.tgz -SL https://download.docker.com/mac/static/stable/"$CPU"/docker-24.0.5.tgz
 tar xzvf docker.tgz
 install docker/docker "$HOME/.local/bin/"
-install docker/cli-plugins/docker-buildx "$HOME/.local/bin/"
-install docker/cli-plugins/docker-app "$HOME/.local/bin/"
+curl -o docker-buildx -SL https://github.com/docker/buildx/releases/download/v0.11.2/buildx-v0.11.2.darwin-"$CPU_BUILDX"
+install docker-buildx "$HOME/.local/bin/"
 (
   cd "$HOME/.docker/cli-plugins"
   ln -s "$HOME/.local/bin/docker-buildx" .
-  ln -s "$HOME/.local/bin/docker-app" .
 )
-rm -rf docker.tgz docker/
+rm -rf docker.tgz docker/ docker-buildx
 
 # Start the prepackaged Docker VM and set it as the default machine.
 # multipass set local.driver=qemu
