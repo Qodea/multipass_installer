@@ -57,6 +57,34 @@ multipass <~/.ssh/id_ed25519.pub exec docker -- bash -c 'cat -- >> ~/.ssh/author
 ssh-keygen -R docker.local
 ```
 
+## FAQs
+
+### _How can I customise the amount of CPUs and memory allocated to the Virtual Machine?_
+
+You can do this by setting the values in Multipass:
+
+```sh
+multipass stop docker
+multipass set local.docker.cpus=4
+multipass set local.docker.memory=8GiB
+multipass start docker
+```
+
+### _Does the script need to mount my entire home directory onto the Virtual Machine?_
+
+You don't _need_ to have the `$HOME` directory mounted, but it's recommended.
+
+The script has been tested with specific non-protected mounts and has worked without errors. Refer to the Troubleshooting section of this README.
+
+You can change mountpoints like so:
+
+```sh
+multipass stop docker
+multipass umount docker:"$HOME"
+multipass mount --type native "$HOME/my_developer_dir" docker # /my_developer_dir would contain all your devcontainer-supported repositories
+multipass start docker
+```
+
 ## TODO
 
 -   Add a test suite.
