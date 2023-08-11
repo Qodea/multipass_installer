@@ -15,7 +15,7 @@ export PATH=$PATH:$HOME/.local/bin
 echo 'export PATH=$PATH:$HOME/.local/bin' | tee -a "$HOME"/.zshrc "$HOME"/.bash_profile
 
 # Install Multipass.
-curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.12.0/multipass-1.12.0+mac-Darwin.pkg
+curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.12.2/multipass-1.12.2+mac-Darwin.pkg
 sudo installer -pkg multipass.pkg -target /
 rm multipass.pkg
 
