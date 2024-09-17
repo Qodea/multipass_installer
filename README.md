@@ -81,6 +81,7 @@ You can change mountpoints like so:
 -   Test for the script being run from `~/Desktop`, `~/Documents` or
     `~/Downloads` and error out as these are protected.
 -   Test for `docker-credential-osxkeychain` and fix.
+-   Improve pre-commit config.
 
 ## License
 
