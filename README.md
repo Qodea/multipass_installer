@@ -74,23 +74,26 @@ multipass start docker
 
 You don't _need_ to have the `$HOME` directory mounted, but it's recommended.
 
-The script has been tested with specific non-protected mounts and has worked without errors. Refer to the Troubleshooting section of this README.
+The script has been tested with specific non-protected mounts and has worked
+without errors. Refer to the Troubleshooting section of this README.
 
 You can change mountpoints like so:
 
 ```sh
 multipass stop docker
 multipass umount docker:"$HOME"
-multipass mount --type native "$HOME/my_developer_dir" docker # /my_developer_dir would contain all your devcontainer-supported repositories
+multipass mount --type native "$HOME/my_developer_dir" docker
+# /my_developer_dir would contain all your devcontainer-supported repositories
 multipass start docker
 ```
 
 ## TODO
 
 -   Add a test suite.
+-   Test / ask for existing SSH keys.
 
 ## License
 
-(C) CTS 2023
+(C) Qodea 2024
 
 MIT License, see [LICENSE](LICENSE) for details.
