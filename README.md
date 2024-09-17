@@ -47,14 +47,7 @@ and launch it again. This means you'll need to re-add keys (and remove the old
 ones from your keystore) and re-mount your home directory:
 
 ```sh
-multipass delete docker
-multipass purge
-multipass launch docker
-multipass stop docker
-multipass mount --type native "$HOME" docker
-multipass start docker
-multipass <~/.ssh/id_ed25519.pub exec docker -- bash -c 'cat -- >> ~/.ssh/authorized_keys'
-ssh-keygen -R docker.local
+./rebuild.sh
 ```
 
 ## FAQs
@@ -64,10 +57,7 @@ ssh-keygen -R docker.local
 You can do this by setting the values in Multipass:
 
 ```sh
-multipass stop docker
-multipass set local.docker.cpus=4
-multipass set local.docker.memory=8GiB
-multipass start docker
+./resize.sh
 ```
 
 ### _Does the script need to mount my entire home directory onto the Virtual Machine?_
@@ -80,17 +70,17 @@ without errors. Refer to the Troubleshooting section of this README.
 You can change mountpoints like so:
 
 ```sh
-multipass stop docker
-multipass umount docker:"$HOME"
-multipass mount --type native "$HOME/my_developer_dir" docker
-# /my_developer_dir would contain all your devcontainer-supported repositories
-multipass start docker
+./remount.sh
 ```
 
 ## TODO
 
 -   Add a test suite.
 -   Test / ask for existing SSH keys.
+-   Add parameters to helper scripts.
+-   Test for the script being run from `~/Desktop`, `~/Documents` or
+    `~/Downloads` and error out as these are protected.
+-   Test for `docker-credential-osxkeychain` and fix.
 
 ## License
 
