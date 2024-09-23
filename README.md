@@ -75,6 +75,8 @@ You can change mountpoints like so:
 
 ## TODO
 
+-   Update to the next official Multipass release after 1.14.0 once MacOS
+    Sequoia support is fixed.
 -   Add a test suite.
 -   Test / ask for existing SSH keys.
 -   Add parameters to helper scripts.

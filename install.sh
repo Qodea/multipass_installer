@@ -15,7 +15,9 @@ export PATH=$PATH:$HOME/.local/bin
 echo 'export PATH=$PATH:$HOME/.local/bin' | tee -a "$HOME"/.zshrc "$HOME"/.bash_profile
 
 # Install Multipass.
-curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.12.2/multipass-1.12.2+mac-Darwin.pkg
+# Temporary fix for MacOS 15.0 Sequoia. TODO: use the next official release.
+# curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.14.0/multipass-1.12.2+mac-Darwin.pkg
+curl -o multipass.pkg -SL https://multipass-ci.s3.amazonaws.com/pr661/multipass-1.15.0-dev.2929.pr661%2Bgc67ef6641.mac-Darwin.pkg
 sudo installer -pkg multipass.pkg -target /
 rm multipass.pkg
 
@@ -23,7 +25,10 @@ rm multipass.pkg
 CPU=$(uname -m)
 CPU_BUILDX=amd64
 case $CPU in
-arm64) CPU=aarch64; CPU_BUILDX=arm64 ;;
+arm64)
+  CPU=aarch64
+  CPU_BUILDX=arm64
+  ;;
 esac
 curl -o docker.tgz -SL https://download.docker.com/mac/static/stable/"$CPU"/docker-24.0.5.tgz
 tar xzvf docker.tgz
