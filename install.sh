@@ -16,7 +16,7 @@ echo 'export PATH=$PATH:$HOME/.local/bin' | tee -a "$HOME"/.zshrc "$HOME"/.bash_
 
 # Install Multipass.
 # Temporary fix for MacOS 15.0 Sequoia. TODO: use the next official release.
-# curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.14.0/multipass-1.12.2+mac-Darwin.pkg
+# curl -o multipass.pkg -SL https://github.com/canonical/multipass/releases/download/v1.14.0/multipass-1.14.0+mac-Darwin.pkg
 curl -o multipass.pkg -SL https://multipass-ci.s3.amazonaws.com/pr661/multipass-1.15.0-dev.2929.pr661%2Bgc67ef6641.mac-Darwin.pkg
 sudo installer -pkg multipass.pkg -target /
 rm multipass.pkg
