@@ -8,7 +8,7 @@ if [ "$(uname)" != "Darwin" ]; then
 fi
 
 # Create directories.
-mkdir -p "$HOME/.local/bin" "$HOME/.docker/cli-plugins" "$HOME/.ssh"
+mkdir -p "$HOME/.local/bin" "$HOME/.docker/cli-plugins" "$HOME/.ssh" "$HOME/Developer"
 
 export PATH=$PATH:$HOME/.local/bin
 # shellcheck disable=SC2016
@@ -45,7 +45,7 @@ rm -rf docker.tgz docker/ docker-buildx
 # multipass set local.driver=qemu
 multipass launch docker
 multipass stop docker
-multipass mount --type native "$HOME" docker
+multipass mount --type native "$HOME/Developer" docker
 multipass start docker
 multipass set client.primary-name=docker
 
