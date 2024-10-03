@@ -1,6 +1,12 @@
 {
-  "name": "cts-base",
-  "image": "eu.gcr.io/cts-public-images-1/cts-base",
+  "name": "multipass-installer",
+  "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {},
+    "ghcr.io/devcontainers-contrib/features/markdownlint-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/gh-cli:1": {},
+    "ghcr.io/dhoeric/features/google-cloud-cli:1": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -10,6 +16,9 @@
         "timonwong.shellcheck"
       ]
     }
+  },
+  "postAttachCommand": {
+    "pre-commit": "pipx install pre-commit && pre-commit install",
+    "detect-secrets": "pipx install detect-secrets" // pragma: allowlist secret
   }
-  // "postStartCommand": "pre-commit install"
 }
